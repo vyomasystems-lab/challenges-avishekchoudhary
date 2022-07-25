@@ -77,7 +77,7 @@ For the mux design, there should be one more case ``5'b11110`` in the design cod
 Updating the design and re-running the test makes the test pass.
 
 !{bug_passed_1](https://user-images.githubusercontent.com/56909326/180762425-89923095-c773-4be1-bed9-a1663103e27d.png)
-/n
+_________________________________________________________________________________________________________________________________
 ![bug_passed_2](https://user-images.githubusercontent.com/56909326/180759632-6e51546a-3e7c-4ad6-b506-7576c8bdd1f1.png)
 
 
