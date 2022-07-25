@@ -1,10 +1,10 @@
 # Mux Design Verification
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon.
-
 *Make sure to include the Gitpod id in the screenshot*
 
-![gitpod id](https://github.com/[vyomasystems-lab]/[challenges-avishekchoudhary]/blob/[master]/gitpod_id.png?raw=true)
+![gitpod_id](https://user-images.githubusercontent.com/56909326/180759565-f223a430-a37e-4f66-a41b-075abe8a05f5.png)
+
 
 ## Verification Environment
 
@@ -76,9 +76,11 @@ For the mux design, there should be one more case ``5'b11110`` in the design cod
 ## Design Fix
 Updating the design and re-running the test makes the test pass.
 
-![bug 1](https://github.com/[vyomasystems-lab]/[challenges-avishekchoudhary]/blob/[master]/level1_design1/bug_passed_1.png?raw=true)
+![bug_passed_1](https://user-images.githubusercontent.com/56909326/180759616-19ccae76-1aef-4ac6-a41f-77816eadf20f.png)
 
-![bug 2](https://github.com/[vyomasystems-lab]/[challenges-avishekchoudhary]/blob/[master]/level1_design1/bug_passed_2.png?raw=true)
+![bug_passed_2](https://user-images.githubusercontent.com/56909326/180759632-6e51546a-3e7c-4ad6-b506-7576c8bdd1f1.png)
+
+
 The updated design is checked in as mux_corrected.v
 
 ## Verification Strategy
