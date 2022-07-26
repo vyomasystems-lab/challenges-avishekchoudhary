@@ -3,7 +3,8 @@
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon.
 *Make sure to include the Gitpod id in the screenshot*
 
-![gitpod_id]()
+![gitpod_id](https://user-images.githubusercontent.com/56909326/181071537-0c9b8aa7-2d89-479d-bfc1-93128b5121ce.png)
+
 
 
 ## Verification Environment
@@ -150,9 +151,10 @@ For the Detector design, the case should be ```if(input ==1)begin next_state=SEQ
 ## Design Fix
 Updating the design and re-running the test makes the test pass.
 
-![bugs]()
+![bugs](https://user-images.githubusercontent.com/56909326/181071609-a9145987-8ffc-4b28-a26f-944f1c92b416.png)
 
-The updated design is checked in as mux_corrected.v
+
+The updated design is checked in as seq_detect_1011_corrected.v
 
 ## Verification Strategy
 Firstly I designed the state diagram of the sequence detector and analysed the current and next states in code and I found bug  there.Then i wrote testbench targeted for exposing the bug.During This process i faced some issue like for same code the simulator/env was giving different outputs this is maybe due to internet connectivity issue or maybe due to some bug in simulator/env. 
