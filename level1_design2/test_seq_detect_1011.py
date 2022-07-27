@@ -16,26 +16,25 @@ async def test_seq_bug1(dut):
 
     clock = Clock(dut.clk, 10, units="us")  # Create a 10us period clock on port clk
     cocotb.start_soon(clock.start())        # Start the clock
-
+    
     # reset
     dut.reset.value = 1
     await FallingEdge(dut.clk)  
     dut.reset.value = 0
     await FallingEdge(dut.clk)
+    dut._log.info(f"seq_seen={dut.seq_seen.value} curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value} reset={dut.reset.value}")
 
     cocotb.log.info('#### CTB: Develop your test here! ######')
 
     dut.inp_bit.value = 1
     await FallingEdge(dut.clk)
-    dut._log.info(f"seq_seen={dut.seq_seen.value} curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value}")
-    # assert dut.next_state.value == dut.IDLE.value,f"Design has a bug beause {dut.next_state.value} != {dut.IDLE.value}"
-    
+    dut._log.info(f"seq_seen={dut.seq_seen.value} curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value} reset={dut.reset.value}")
+    assert dut.current_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
+
     dut.inp_bit.value = 1
     await FallingEdge(dut.clk)
-    dut._log.info(f"seq_seen={dut.seq_seen.value} curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value}")
-    assert dut.next_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
-    
-
+    dut._log.info(f"seq_seen={dut.seq_seen.value} curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value} reset={dut.reset.value}")
+    assert dut.current_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
 
 @cocotb.test()
 async def test_seq_bug2(dut):
@@ -55,7 +54,7 @@ async def test_seq_bug2(dut):
     dut.inp_bit.value = 1
     await FallingEdge(dut.clk)
     dut._log.info(f" seq_seen={dut.seq_seen.value} curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value}")
-    # assert dut.next_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
+    # assert dut.current_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
 
     dut.inp_bit.value = 0
     await FallingEdge(dut.clk)
@@ -89,7 +88,7 @@ async def test_seq_bug3(dut):
     dut.inp_bit.value = 1
     await FallingEdge(dut.clk)
     dut._log.info(f"curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value}")
-    # assert dut.next_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
+    # assert dut.current_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
 
     dut.inp_bit.value = 0
     await FallingEdge(dut.clk)
@@ -129,7 +128,7 @@ async def test_seq_bug4(dut):
     dut.inp_bit.value = 1
     await FallingEdge(dut.clk)
     dut._log.info(f"curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value}")
-    # assert dut.next_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
+    # assert dut.current_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
 
     dut.inp_bit.value = 0
     await FallingEdge(dut.clk)
@@ -148,5 +147,5 @@ async def test_seq_bug4(dut):
     dut.inp_bit.value = 1
     await FallingEdge(dut.clk)
     dut._log.info(f"seq_seen={dut.seq_seen.value} curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value}")
-    assert dut.next_state.value == dut.SEQ_1.value,f"Design has bug because {dut.next_state.value}!={dut.SEQ_1.value}"
+    assert dut.current_state.value == dut.SEQ_1.value,f"Design has bug because {dut.next_state.value}!={dut.SEQ_1.value}"
     
