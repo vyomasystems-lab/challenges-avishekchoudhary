@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+
 module Row_Signal(//Scans for row of the asserted key
     input [15:0] Key,
     input [3:0] Col,
@@ -16,13 +16,13 @@ endmodule
 // ---------------------------------------------------------------------------
 module Synchronizer(
     input [3:0] Row,
-    input clock,
+    input clk,
     input reset,
     output reg S_Row
     );
     reg A_Row;
     
-    always @ (negedge clock or posedge reset)
+    always @ (negedge clk or posedge reset)
     begin
     if (reset) 
     begin 
@@ -38,11 +38,10 @@ module Synchronizer(
         
 endmodule
 // ----------------------------------------------------------------------------
-
 module Hex_Keypad_Grayhill_072(
     input [3:0] Row,
     input S_Row,
-    input clock,
+    input clk,
     input reset,
     output reg [3:0] Code,
     output Valid,
@@ -59,7 +58,7 @@ module Hex_Keypad_Grayhill_072(
     always @ (Row or Col)
     case ({Row, Col})
         8'b0001_0001: Code = 0; 
-        8'b0001_0010: Code = 1;
+        8'b0001_0001: Code = 1;
         8'b0001_0100: Code = 2; 
         8'b0001_1000: Code = 3;
         8'b0010_0001: Code = 4; 
@@ -76,7 +75,7 @@ module Hex_Keypad_Grayhill_072(
         8'b1000_1000: Code = 15;   //F
         default: Code = 0;             
     endcase
-    always @(posedge clock or posedge reset)
+    always @(posedge clk or posedge reset)
     if (reset) state <= S_0;
     else state <= next_state;
     always@ (state or S_Row or Row)    // Next-state logic
