@@ -29,12 +29,15 @@ async def test_seq_bug1(dut):
     dut.inp_bit.value = 1
     await FallingEdge(dut.clk)
     dut._log.info(f"seq_seen={dut.seq_seen.value} curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value} reset={dut.reset.value}")
-    assert dut.current_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
+    # assert dut.current_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
 
     dut.inp_bit.value = 1
     await FallingEdge(dut.clk)
     dut._log.info(f"seq_seen={dut.seq_seen.value} curr_state={dut.current_state}  next_state={dut.next_state.value} input={dut.inp_bit.value} reset={dut.reset.value}")
-    assert dut.current_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
+    assert dut.next_state.value == dut.SEQ_1.value,f"Design has a bug beause {dut.next_state.value} != {dut.SEQ_1.value}"
+
+    dut.inp_bit.value = 0
+    await Timer(10,units='ns')
 
 @cocotb.test()
 async def test_seq_bug2(dut):
