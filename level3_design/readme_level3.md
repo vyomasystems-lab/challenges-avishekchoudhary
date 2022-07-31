@@ -13,22 +13,22 @@ The [CoCoTb](https://www.cocotb.org/) based Python test is developed as explaine
 
 1.The values are assigned to the input port using 
 ```
-dut.Col.value = 2
+dut.reset.value = 1
 
 ```
 The assert statement is used for comparing the Keypad's output to the expected value.
 
 The following error is seen:
 ```
- assert dut.Code.value == 1,f"There is bug in the design because {dut.Code.value}!=2"
-                     AssertionError: There is bug in the design because 0000!=2
+ assert dut.state.value == 1,f"state = {dut.state.value}!=1.So there is a bug in the design."
+                     AssertionError: state = 000010!=1.So there is a bug in the design.
                      
 ```
 
 ## Test Scenario **(1)**
-- Test Inputs: Col=2 
-- Expected Output: Code = 1 or 0001
-- Observed Output in the DUT dut.Code.value=0000
+- Test Inputs: reset=1 
+- Expected Output: state = 1 or 000001
+- Observed Output in the DUT dut.state.value=000010
 
 Output mismatches for the above inputs proving that there is a design bug
 
@@ -36,13 +36,12 @@ Output mismatches for the above inputs proving that there is a design bug
 Based on the above test input and analysing the design, we see the following
 
 ```
- always @ (Row or Col)
-    case ({Row, Col})
-        8'b0001_0001: Code = 0; 
-        8'b0001_0001: Code = 1; ==>bug
+  always @(posedge clk or posedge reset)
+    if (reset) state <= S_1; == bug
+    else state <= next_state;
 
 ```
-For the Hex_keypad design, the case should be ```8'b0001_0010``` instead of ```8'b0001_0001``` as in the design code.
+For the Hex_keypad design, the state should be ```S_0 i.e 000001``` instead of ```8'S_1 i.e 000010``` as in the design code.
 
 
 ## Verification Strategy

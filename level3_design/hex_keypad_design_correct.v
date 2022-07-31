@@ -76,7 +76,7 @@ module Hex_Keypad_Grayhill_072(
         default: Code = 0;             
     endcase
     always @(posedge clk or posedge reset)
-    if (reset) state <= S_1;
+    if (reset) state <= S_0;
     else state <= next_state;
     always@ (state or S_Row or Row)    // Next-state logic
     begin next_state = state; Col = 0;
