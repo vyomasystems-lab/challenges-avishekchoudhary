@@ -1,9 +1,9 @@
-# Sequence Detector Design Verification
+# Bit Manipulation Coprocessor Design Verification
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon.
 *Make sure to include the Gitpod id in the screenshot*
 
-![gitpod_id](https://user-images.githubusercontent.com/56909326/181591993-80b70ef5-2b40-45d7-9438-289830793176.png)
+![gitpod_id](https://user-images.githubusercontent.com/56909326/182034434-415c485c-a718-45ca-ac0b-8e9032a456f2.png)
 
 
 
