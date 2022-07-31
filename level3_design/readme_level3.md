@@ -1,4 +1,4 @@
-# Sequence Detector Design Verification
+# HEX Keypad generator and decoder Design Verification
 
 The verification environment is setup using [Vyoma's UpTickPro](https://vyomasystems.com) provided for the hackathon.
 *Make sure to include the Gitpod id in the screenshot*
@@ -42,6 +42,15 @@ Based on the above test input and analysing the design, we see the following
 
 ```
 For the Hex_keypad design, the state should be ```S_0 i.e 000001``` instead of ```8'S_1 i.e 000010``` as in the design code.
+
+## Design Fix
+Updating the design and re-running the test makes the test pass.
+
+![levl3_pass](https://user-images.githubusercontent.com/56909326/182034288-cad7ff20-59f0-4319-8fa9-0bc3c2caad6e.png)
+
+
+
+The updated design is checked in as hex_keypad_design_correct.v
 
 
 ## Verification Strategy
